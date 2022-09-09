@@ -1,5 +1,7 @@
+import { BookType } from "@type/BookTypes";
+
 interface Props {
-  books: { name: string; id: number }[];
+  books: BookType[];
   loading: boolean;
   error: boolean;
 }

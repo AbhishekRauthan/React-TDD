@@ -13,7 +13,10 @@ describe("empty spec", () => {
       cy.request("POST", "http://localhost:8080/books", book)
     );
   });
-  it("passes", () => {
+  afterEach(() => {
+    cy.request("DELETE", "http://localhost:8080/books?_cleanup=true");
+  });
+  it("Renders Headings", () => {
     cy.visit("http://localhost:5173/");
     cy.get('div[data-test="book-list"]').should("exist");
     cy.get("div.book-item").should((books) => {
@@ -26,5 +29,10 @@ describe("empty spec", () => {
         "Building Microservices",
       ]);
     });
+  });
+  it("Goes to Details page!", () => {
+    cy.visit("http://localhost:5173/");
+    cy.get("div.book-item").contains("View Details").eq(0).click();
+    cy.url().should("include", "/books/1");
   });
 });
