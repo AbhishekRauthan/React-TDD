@@ -34,5 +34,6 @@ describe("empty spec", () => {
     cy.visit("http://localhost:5173/");
     cy.get("div.book-item").contains("View Details").eq(0).click();
     cy.url().should("include", "/books/1");
+    cy.get("h2.book-title").contains("Refactoring");
   });
 });
