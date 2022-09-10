@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
-import getData from "../../hooks/getData";
-import BookDetails from "../BookDetails";
+import getData from "../../../hooks/getData";
+import BookDetails from "..";
 
 const BookDetailContainer = () => {
   const params = useParams();

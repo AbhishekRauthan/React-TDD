@@ -1,5 +1,5 @@
-import getData from "../../hooks/getData";
-import BookList from "../BookList";
+import getData from "../../../hooks/getData";
+import BookList from "..";
 
 const BookContainer = () => {
   const { data, error, loading } = getData("http://localhost:8080/books");
