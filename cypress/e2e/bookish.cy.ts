@@ -18,6 +18,7 @@ describe("empty spec", () => {
   });
   it("Renders Headings", () => {
     cy.visit("http://localhost:5173/");
+    cy.get('h2[data-test="heading"]').contains("Bookish");
     cy.get('div[data-test="book-list"]').should("exist");
     cy.get("div.book-item").should((books) => {
       expect(books).to.have.length(3);
