@@ -1,7 +1,7 @@
 import getData from "../../../hooks/getData";
 import BookList from "..";
-import { TextField } from "@mui/material";
 import { useEffect, useState } from "react";
+import Search from "../Search";
 
 const BookContainer = () => {
   const [term, setTerm] = useState("");
@@ -14,17 +14,7 @@ const BookContainer = () => {
 
   return (
     <>
-      <TextField
-        label="Search"
-        value={term}
-        onChange={(e) => {
-          console.log(e.target.value);
-          setTerm(e.target.value);
-        }}
-        data-test="search"
-        variant="outlined"
-        margin="normal"
-      />
+      <Search term={term} onSearch={(e) => setTerm(e.target.value)} />
       <BookList books={data} error={error} loading={loading} />
     </>
   );
