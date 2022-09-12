@@ -1,8 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-const getData = (url: string) => {
+const getData = (initialUrl: string) => {
   const [data, setData] = useState<any>([]);
+  const [url, setUrl] = useState(initialUrl);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
@@ -20,9 +21,9 @@ const getData = (url: string) => {
           setError(true);
         });
     })();
-  }, []);
+  }, [url]);
 
-  return { data, error, loading };
+  return { data, error, loading, setUrl };
 };
 
 export default getData;
