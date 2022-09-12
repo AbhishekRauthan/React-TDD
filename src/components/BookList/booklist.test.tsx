@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { render } from "@testing-library/react";
 
 import BookList from "./index";
+import { MemoryRouter as Router } from "react-router-dom";
 
 describe("Testing BookList", () => {
   it("Renders Loading", () => {
@@ -36,7 +37,11 @@ describe("Testing BookList", () => {
         { name: "Building Microservices", id: 3 },
       ],
     };
-    const { container } = render(<BookList {...props} />);
+    const { container } = render(
+      <Router>
+        <BookList {...props} />
+      </Router>
+    );
     const titles = [...container.querySelectorAll("h2")].map(
       (x) => x.innerHTML
     );
