@@ -52,4 +52,19 @@ describe("first", () => {
       expect(store.getActions()).toEqual(expectedActions);
     });
   });
+  it('Search data with term', () => {
+    const books = [
+      { id: 1, name: 'Refactoring' },
+      { id: 2, name: 'Domain-driven design' },
+    ];
+    axios.get = vi
+      .fn()
+      .mockImplementation(() => Promise.resolve({ data: books }));
+    const store = mockStore({ books: [] });
+    return store.dispatch(fetchBooks('domain')).then(() => {
+      expect(axios.get).toHaveBeenCalledWith(
+        'http://localhost:8080/books?q=domain'
+      );
+    });
+  });
 });
