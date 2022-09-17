@@ -1,14 +1,53 @@
-import { Reducer } from 'redux';
-import * as types from './constants';
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { BookType } from "@type/BookTypes";
+import axios from "axios";
 
-const reducer:Reducer = (state:any = [], action:any) => {
-  switch (action.type) {
-    case types.FETCH_BOOKS_PENDING:
-      return { ...state, loading: true };
-    case types.FETCH_BOOKS_SUCCESS:
-      return { books: action.books };
-    default:
-      return state;
-  }
+type State = {
+  books: BookType[];
+  loading: boolean;
+  error: boolean;
 };
-export default reducer;
+
+const initialState: State = {
+  books: [],
+  error: false,
+  loading: false,
+};
+
+export const fetchBooks = createAsyncThunk(
+  "books/fetchBooks",
+  async (term: string, thunkAPI) => {
+    try {
+      return await axios.get(`http://localhost:8080/books?q=${term}`);
+    } catch (error: any) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+export const bookSlice = createSlice({
+  name: "books",
+  initialState,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(fetchBooks.pending, (state) => {
+      state.loading = true;
+    }),
+      builder.addCase(fetchBooks.fulfilled, (state, action:any) => {
+        state.loading = false;
+        state.books = action.payload;
+      }),
+      builder.addCase(fetchBooks.rejected, (state) => {
+        state.loading = false;
+        state.error = true;
+      });
+  },
+});
+
+export default bookSlice.reducer;
