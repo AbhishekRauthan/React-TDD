@@ -1,21 +1,26 @@
-import getData from "../../../hooks/getData";
 import BookList from "..";
 import { useEffect, useState } from "react";
 import Search from "../Search";
+import {
+  useAppDispatch,
+  useAppSelector,
+  bookListSelector,
+} from "../../../hooks/reduxHooks";
+import { fetchBooks } from "../../../redux/bookSlice";
 
 const BookContainer = () => {
   const [term, setTerm] = useState("");
-  const { data, error, loading, setUrl } = getData(
-    "http://localhost:8080/books"
-  );
+  const dispatch = useAppDispatch();
+
+  const { books, error, loading } = useAppSelector(bookListSelector);
   useEffect(() => {
-    setUrl(`http://localhost:8080/books?q=${term}`);
+    dispatch(fetchBooks(term));
   }, [term]);
 
   return (
     <>
       <Search term={term} onSearch={(e) => setTerm(e.target.value)} />
-      <BookList books={data} error={error} loading={loading} />
+      <BookList books={books} error={error} loading={loading} />
     </>
   );
 };
