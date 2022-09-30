@@ -13,7 +13,7 @@ describe("Testing Store", () => {
     const books = [{ id: 1, name: "Refactoring" }];
     axios.get = vi
       .fn()
-      .mockImplementation(() => Promise.resolve(books));
+      .mockImplementation(() => Promise.resolve({ data: books }));
 
     await store.dispatch(fetchBooks(""));
     const state = store.getState();
