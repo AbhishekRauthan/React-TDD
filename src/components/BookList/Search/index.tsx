@@ -1,4 +1,5 @@
-import { TextField } from "@mui/material";
+import { Input, InputGroup } from "@chakra-ui/react";
+import { Label } from "./style";
 
 type Props = {
   term: string;
@@ -9,16 +10,30 @@ type Props = {
 
 const Search = ({ term, onSearch }: Props) => {
   return (
-    <TextField
-      label="Search"
-      value={term}
-      type="text"
-      onChange={onSearch}
-      data-test="search"
-      variant="outlined"
-      margin="normal"
-    />
+    <InputGroup
+      width={{ base: "80vw", md: "60vw", lg: "lg" }}
+      position="relative"
+      marginTop={{ lg: "5" }}
+    >
+      <Input
+        value={term}
+        type="text"
+        onChange={onSearch}
+        data-test="search"
+        margin="3"
+        _placeholder={{ opacity: 0 }}
+        placeholder="Search"
+        variant="flushed"
+        focusBorderColor="black"
+        className="peer"
+        _focusVisible={{
+          boxShadow: "none",
+          borderColor: "#000",
+        }}
+      />
+      <Label>Search</Label>
+    </InputGroup>
   );
 };
 
-export default Search
+export default Search;
