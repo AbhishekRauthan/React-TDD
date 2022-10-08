@@ -18,37 +18,36 @@ This project is a recreation of application build in book [Test-Driven Developme
 
 ## The following technologies were used:
 
-  - Vitest
-  - Vite
-  - Cypress
-  - React
-  - Typescript
+- Vitest
+- Vite
+- Cypress
+- React
+- Typescript
+
+you can find mock server for usage [here](https://github.com/AbhishekRauthan/React-TDD-Mock-Server)
 
 ## Commands
 
 - to run Vitest
 
   > via npm
-    <br/> `npm run test`
-  
-  > via yarn
-  <br/> `yarn test`
+  > <br/> `npm run test`
 
+  > via yarn
+  > <br/> `yarn test`
 
 - to run Cypress
 
-  >via npm
-    <br/> `npm run cypress`
-  
-  > via yarn
-  <br/> `yarn cypress` 
+  > via npm
+  > <br/> `npm run cypress`
 
+  > via yarn
+  > <br/> `yarn cypress`
 
 - to run App
 
-  >via npm
-    <br/> `npm run dev`
-  
-  > via yarn
-  <br/> `yarn dev` 
+  > via npm
+  > <br/> `npm run dev`
 
+  > via yarn
+  > <br/> `yarn dev`
