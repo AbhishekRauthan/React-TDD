@@ -8,10 +8,10 @@ const App = () => {
     <Box
       maxWidth="container.lg"
       paddingX={{ base: "3", lg: "0" }}
-      marginY={{ lg: "7" }}
+      marginY={{ base:"4",lg: "7" }}
       marginX="auto"
     >
-      <Heading as="h2" margin="3" data-test="heading">
+      <Heading as="h1" data-test="heading" fontSize={{base:"4xl"}}>
         Bookish
       </Heading>
       <Routes>

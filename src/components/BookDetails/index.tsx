@@ -1,3 +1,4 @@
+import { Flex, Heading, Text } from "@chakra-ui/react";
 import { BookType } from "@type/BookTypes";
 
 interface Props {
@@ -6,10 +7,22 @@ interface Props {
 
 const BookDetails = ({ book }: Props) => {
   return (
-    <div className="detail">
-      <h2 className="book-title">{book.name}</h2>
-      <p className="book-description">{book.description}</p>
-    </div>
+    <Flex direction="column" marginTop={{ base: "5" }}>
+      <Heading
+        className="book-title"
+        textAlign="left"
+        fontSize={{ base: "3xl" }}
+      >
+        {book.name}
+      </Heading>
+      <Text
+        marginTop={{ base: "3" }}
+        fontSize={{ base: "xl" }}
+        className="book-description"
+      >
+        {book.description}
+      </Text>
+    </Flex>
   );
 };
 
